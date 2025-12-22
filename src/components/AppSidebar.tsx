@@ -1,14 +1,12 @@
-import { url } from "inspector";
+"use client";
+
 import {
-  Home,
-  Inbox,
   Calendar,
   Search,
   Settings,
   User2,
   ChevronUp,
   Building2Icon,
-  FileArchiveIcon,
   FileBoxIcon,
 } from "lucide-react";
 import {
@@ -25,40 +23,19 @@ import {
   SidebarSeparator,
 } from "./ui/sidebar";
 import Link from "next/link";
-import Image from "next/image";
-import { DropdownMenu, DropdownMenuContent } from "./ui/dropdown-menu";
 import {
+  DropdownMenu,
+  DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@radix-ui/react-dropdown-menu";
+} from "./ui/dropdown-menu";
 
-// Menu items.
 const items = [
-  {
-    title: "Report",
-    url: "/",
-    icon: FileBoxIcon,
-  },
-  {
-    title: "Data Loket Cabang",
-    url: "/data/loketcabang",
-    icon: Building2Icon,
-  },
-  {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "#",
-    icon: Search,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-  },
+  { title: "Report", url: "/", icon: FileBoxIcon },
+  { title: "Data Loket Cabang", url: "/data/loketcabang", icon: Building2Icon },
+  { title: "Calendar", url: "#", icon: Calendar },
+  { title: "Search", url: "#", icon: Search },
+  { title: "Settings", url: "#", icon: Settings },
 ];
 
 const AppSidebar = () => {
@@ -70,7 +47,6 @@ const AppSidebar = () => {
             <SidebarMenuButton asChild>
               <Link href="/">
                 <User2 />
-                {/* <Image src="/logo.svg" alt="logo" width={20} height={20} /> */}
                 <span>Djojo</span>
               </Link>
             </SidebarMenuButton>
@@ -78,6 +54,7 @@ const AppSidebar = () => {
         </SidebarMenu>
         <SidebarSeparator />
       </SidebarHeader>
+
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Application</SidebarGroupLabel>
@@ -86,10 +63,10 @@ const AppSidebar = () => {
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <a href={item.url}>
+                    <Link href={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
@@ -97,6 +74,7 @@ const AppSidebar = () => {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+
       <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
@@ -109,7 +87,7 @@ const AppSidebar = () => {
               <DropdownMenuContent align="end">
                 <DropdownMenuItem>Account</DropdownMenuItem>
                 <DropdownMenuItem>Setting</DropdownMenuItem>
-                <DropdownMenuItem>SignOut</DropdownMenuItem>
+                <DropdownMenuItem>Sign Out</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </SidebarMenuItem>
